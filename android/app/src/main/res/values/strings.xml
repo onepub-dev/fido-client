@@ -1,0 +1,7 @@
+<resources>
+        <string name="asset_statements" translatable="false">
+    [{
+            \"include\": \"http://squarephone.biz:8080/.well-known/assetlinks.json\"
+    }]
+        </string>
+</resources>
