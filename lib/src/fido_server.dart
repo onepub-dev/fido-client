@@ -15,7 +15,7 @@ class FidoServer {
 
   // static const String testURl = 'http://localhost:8080';
   /// connect to local fido server from emulator
-  static const String testURl = 'http://squarephone.biz:8080';
+  static const String testURl = 'https://fido.onepub.dev';
 
   final _client = http.Client();
 
@@ -81,14 +81,14 @@ class FidoServer {
 
   Future<SigningOptions> signingRequest(
       String username, String keyHandle) async {
-    var url = Uri.parse('$baseUrl/signingRequest?credId=$keyHandle');
+    var url = Uri.parse('$baseUrl/signing-request');
     var response = await _client.post(url,
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
           HttpHeaders.cookieHeader: 'username=$username',
           'X-Requested-With': 'XMLHttpRequest'
         },
-        body: jsonEncode({}));
+        body: jsonEncode({'credId': keyHandle}));
     print(response.body);
     return _parseSigningReq(response.body);
   }
